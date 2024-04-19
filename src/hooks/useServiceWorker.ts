@@ -12,14 +12,15 @@ export default function useServiceWorker() {
                         { scope: '/' }
                     );
 
-                    navigator.serviceWorker.getRegistration().then((registration) => {
-                        if (registration)
-                            console.log('ServiceWorkerRegistration found.', registration);
-                    });
+                    // It fires when a new service worker is activated.
+                    navigator.serviceWorker.oncontrollerchange = (eve) => {
+                        console.log("New service worker activated.");
+                    };
 
-                    navigator.serviceWorker.getRegistrations().then((registrations) => {
-                        if (registrations)
-                            console.log('ServiceWorkerRegistrations found.', registrations);
+
+                    navigator.serviceWorker.ready.then((registration) => {
+                        if (registration.active)
+                            registration.active.postMessage("Hi service worker");
                     });
 
                     setServiceWorker(_serviceWorker);
