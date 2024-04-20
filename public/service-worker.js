@@ -1,18 +1,13 @@
-console.log({self})  //refers to ServiceWorkerGlobalScope
+self.addEventListener('install', async (eve) => {
+    /*
+    * The new service worker can call skipWaiting() to ask to be activated immediately
+        without waiting for open pages to be closed.
+    * */
+    void self.skipWaiting();
 
-self.addEventListener('install', (eve) => {
     console.log('Event: Service worker installed.')
 })
 
 self.addEventListener('activate', (eve) => {
     console.log('Event: Service worker activated.')
 })
-
-// refresh twice to see result.
-self.addEventListener('fetch', (eve) => {
-    console.log(eve.request.url)
-})
-
-addEventListener("message", (event) => {
-    console.log(`The client sent me a message: ${event.data}`);
-});

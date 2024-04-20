@@ -11,18 +11,6 @@ export default function useServiceWorker() {
                         './service-worker.js',
                         { scope: '/' }
                     );
-
-                    // It fires when a new service worker is activated.
-                    navigator.serviceWorker.oncontrollerchange = (eve) => {
-                        console.log("New service worker activated.");
-                    };
-
-
-                    navigator.serviceWorker.ready.then((registration) => {
-                        if (registration.active)
-                            registration.active.postMessage("Hi service worker");
-                    });
-
                     setServiceWorker(_serviceWorker);
                 } catch (err) {
                     console.log(`Registration failed with ${err} `);
