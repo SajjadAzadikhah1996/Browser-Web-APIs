@@ -18,7 +18,6 @@ export default function useServiceWorker() {
             } else
                 console.log('Service worker is not supported.');
         };
-
         void registerServiceWorker();
     }, []);
 
